@@ -6,7 +6,18 @@ function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            
+            // Handle scroll to top for '#' links
+            if (!href || href === '#') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                return;
+            }
+            
+            const target = document.querySelector(href);
             
             if (target) {
                 const headerHeight = document.querySelector('.header').offsetHeight;
@@ -477,6 +488,16 @@ function initSmoothScroll() {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
+            
+            // Handle scroll to top for '#' links
+            if (!targetId || targetId === '#') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                return;
+            }
+            
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
@@ -538,33 +559,7 @@ function initHeroInteractions() {
 // Start everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', initHeroInteractions);
 
-/*===== NAVIGATION MENU =====*/
-const navMenu = document.getElementById('nav-menu'),
-      navToggle = document.getElementById('nav-toggle'),
-      navClose = document.getElementById('nav-close');
-
-// Menu show
-if(navToggle){
-    navToggle.addEventListener('click', () =>{
-        navMenu.classList.add('show-menu');
-    });
-}
-
-// Menu hidden
-if(navClose){
-    navClose.addEventListener('click', () =>{
-        navMenu.classList.remove('show-menu');
-    });
-}
-
-/*===== REMOVE MENU MOBILE =====*/
-const navLink = document.querySelectorAll('.nav__link');
-
-function linkAction(){
-    const navMenu = document.getElementById('nav-menu');
-    navMenu.classList.remove('show-menu');
-}
-navLink.forEach(n => n.addEventListener('click', linkAction));
+/*===== NAVIGATION MENU - using enhanced mobile navigation function instead =====*/
 
 /*===== SCROLL SECTIONS ACTIVE LINK =====*/
 const sections = document.querySelectorAll('section[id]');
@@ -948,6 +943,16 @@ scrollLinks.forEach(link => {
         e.preventDefault();
         
         const targetId = this.getAttribute('href');
+        
+        // Handle scroll to top for '#' links
+        if (!targetId || targetId === '#') {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            return;
+        }
+        
         const targetSection = document.querySelector(targetId);
         
         if (targetSection) {
@@ -1157,8 +1162,9 @@ document.addEventListener('click', function(e) {
 
 /*===== ACCESSIBILITY ENHANCEMENTS =====*/
 // Focus management for mobile menu
-const firstFocusableElement = navMenu?.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
-const lastFocusableElement = navMenu?.querySelectorAll('a, button, input, [tabindex]:not([tabindex="-1"])');
+const mobileNavMenu = document.getElementById('nav-menu');
+const firstFocusableElement = mobileNavMenu?.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
+const lastFocusableElement = mobileNavMenu?.querySelectorAll('a, button, input, [tabindex]:not([tabindex="-1"])');
 
 function trapFocus(e) {
     if (e.key === 'Tab') {
@@ -1177,7 +1183,7 @@ function trapFocus(e) {
 }
 
 // Apply focus trap when mobile menu is open
-if (navMenu) {
+if (mobileNavMenu) {
     const menuObserver = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.target.classList.contains('show-menu')) {
@@ -1189,7 +1195,7 @@ if (navMenu) {
         });
     });
     
-    menuObserver.observe(navMenu, { attributes: true, attributeFilter: ['class'] });
+    menuObserver.observe(mobileNavMenu, { attributes: true, attributeFilter: ['class'] });
 }
 
 /*===== PRELOADER (OPTIONAL) =====*/

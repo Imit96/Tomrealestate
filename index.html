@@ -17,8 +17,8 @@
     <meta name="HandheldFriendly" content="true">
     
     <!-- Content Security Policy -->
-    <!-- Using self-hosted fonts. Ensure the font files exist under assets/fonts/ and assets/boxicons/ before tightening CSP. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self'; img-src 'self' data: https://images.unsplash.com https:; connect-src 'self';">
+    <!-- Allows CDN fonts from unpkg.com for Boxicons and other external resources -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://unpkg.com; img-src 'self' data: https://images.unsplash.com https:; connect-src 'self';">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -45,8 +45,8 @@
     
     <!-- Local fonts/css -->
     <link rel="stylesheet" href="assets/fonts/poppins/poppins-local.css">
-    <!-- Local Boxicons CSS (self-host fonts) -->
-    <link rel="stylesheet" href="assets/boxicons/boxicons-local.css">
+    <!-- Boxicons CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/conversion-features.css">
@@ -57,7 +57,7 @@
     <header class="header" id="header">
         <nav class="nav container">
             <a href="#" class="nav__logo">
-                <img src="assets/logo.svg" alt="Tom Casa Properties Logo" class="nav__logo-img">
+                <img src="assets/logoo.jpg" alt="Tom Casa Properties Logo" class="nav__logo-img">
                 Tom Casa Properties
             </a>
 
@@ -80,13 +80,10 @@
                     </li>
                 </ul>
 
-                <div class="nav__close" id="nav-close">
-                    <i class='bx bx-x'></i>
-                </div>
             </div>
 
             <div class="nav__toggle" id="nav-toggle">
-                <i class='bx bx-grid-alt'></i>
+                <i class='bx bx-menu nav__toggle-icon'></i>
             </div>
         </nav>
     </header>
@@ -312,7 +309,7 @@
             <!-- Brand & Contact -->
             <div class="footer__content footer__col--brand" aria-label="Company information">
                 <a href="/" class="footer__logo">
-                    <img src="assets/logo.svg" alt="Tom Casa Properties Logo" class="footer__logo-img">
+                    <img src="assets/logoo.jpg" alt="Tom Casa Properties Logo" class="footer__logo-img">
                     Tom Casa Properties
                 </a>
                 <p class="footer__description">
