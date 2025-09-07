@@ -1,0 +1,38 @@
+/* Local Boxicons CSS shim
+   - Download the Boxicons CSS and font files from https://unpkg.com/boxicons@2.1.0 or the cdnjs package
+   - Place the font files in this folder: ../assets/boxicons/
+   - Update the @font-face src urls below if necessary to match exact filenames.
+
+   This minimal shim points Boxicons font-face to local files so the CSP 'font-src' can remain 'self'.
+*/
+
+@font-face {
+  font-family: 'boxicons';
+  src: url('./boxicons.woff2') format('woff2'),
+       url('./boxicons.woff') format('woff'),
+       url('./boxicons.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Minimal Boxicons glyph mapping — if you prefer the full CSS, copy contents of the CDN css into this file and replace remote font urls with local ones. */
+[class^="bx"], [class*=" bx"] {
+  font-family: 'boxicons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Some common icon classes used by this project */
+.bx { display: inline-block; }
+.bx.bx-phone:before { content: "\e900"; }
+.bx.bx-envelope:before { content: "\e901"; }
+.bx.bx-map:before { content: "\e902"; }
+.bx.bx-send:before { content: "\e903"; }
+/* NOTE: the unicode mapping above is illustrative. For full coverage, copy the original boxicons CSS into this file and ensure the @font-face urls point to local files. */

@@ -1,0 +1,1320 @@
+/* ===== NEW CONTENT SECTIONS STYLES ===== */
+
+/*===== CONTENT SECTIONS ANIMATIONS =====*/
+
+/* CSS Custom Properties for Content Sections */
+:root {
+    /* Content section colors */
+    --content-primary: #1A365D;
+    --content-accent: #E53E3E;
+    --content-success: #38A169;
+    --content-info: #3182CE;
+    --content-warning: #D69E2E;
+    
+    /* Content backgrounds */
+    --content-bg-light: #F7FAFC;
+    --content-bg-white: #ffffff;
+    --content-border: #E2E8F0;
+    
+    /* Content text colors */
+    --content-text-dark: #2D3748;
+    --content-text-medium: #4A5568;
+    --content-text-light: #718096;
+}
+
+/* Global animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes growBar {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+/* Counting animation for statistics */
+.stat-number.counting {
+    animation: countUp 0.6s ease-out;
+    color: var(--accent-500);
+    font-weight: 700;
+}
+
+/* Progress circle animation */
+.progress-circle {
+    transition: all 1s ease-out;
+}
+
+.progress-circle[style*="--progress"] svg circle:last-child {
+    stroke-dasharray: calc(var(--progress) * 2.51327) 251.327;
+    animation: drawCircle 1.5s ease-out forwards;
+}
+
+@keyframes drawCircle {
+    from {
+        stroke-dasharray: 0 251.327;
+    }
+    to {
+        stroke-dasharray: calc(var(--progress) * 2.51327) 251.327;
+    }
+}
+
+/* Timeline milestone animation */
+.milestone.animate {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.milestone.animate .milestone__icon {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* FAQ animation */
+.faq-item {
+    transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    animation: expandAnswer 0.4s ease-out;
+}
+
+@keyframes expandAnswer {
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+    to {
+        max-height: 500px;
+        opacity: 1;
+    }
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+    color: var(--accent-500);
+}
+
+/* Tour card hover animations */
+.tour-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tour-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.tour-card:hover .tour-icon {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Button loading states */
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn .fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Success animations */
+.success-icon {
+    animation: successPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes successPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Chart animations */
+.chart-bar {
+    animation: growBar 1.5s ease-out forwards;
+    transform-origin: bottom;
+}
+
+.chart-bar:nth-child(1) { animation-delay: 0.1s; }
+.chart-bar:nth-child(2) { animation-delay: 0.2s; }
+.chart-bar:nth-child(3) { animation-delay: 0.3s; }
+.chart-bar:nth-child(4) { animation-delay: 0.4s; }
+.chart-bar:nth-child(5) { animation-delay: 0.5s; }
+
+/* Loading spinner */
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Mobile optimized animations */
+@media (max-width: 768px) {
+    /* Reduced motion for mobile performance */
+    .milestone.animate,
+    .tour-card:hover,
+    .chart-bar {
+        animation-duration: 0.4s;
+    }
+    
+    /* Simplified hover effects */
+    .tour-card:hover {
+        transform: translateY(-4px);
+    }
+}
+
+/* Accessibility considerations */
+@media (prefers-reduced-motion: reduce) {
+    .milestone.animate,
+    .tour-card:hover,
+    .chart-bar,
+    .progress-circle svg circle:last-child,
+    .stat-number.counting {
+        animation: none;
+    }
+    
+    .faq-item.active .faq-answer {
+        transition: none;
+    }
+}
+
+/*===== WHY IBEJU-LEKKI SECTION =====*/
+.why-ibeju-lekki {
+    background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+    padding: 6rem 0;
+}
+
+.ibeju-stats {
+    margin-top: 4rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-600);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stat-label {
+    font-weight: 600;
+    color: var(--neutral-700);
+    margin-bottom: 0.5rem;
+}
+
+.stat-period {
+    color: var(--neutral-500);
+    font-size: 0.875rem;
+}
+
+/* Investment Drivers */
+.investment-drivers {
+    margin-bottom: 4rem;
+}
+
+.drivers-title {
+    text-align: center;
+    color: var(--primary-600);
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+
+.drivers-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.driver-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.driver-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+}
+
+.driver-visual {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: conic-gradient(var(--primary-500) 0deg, var(--primary-500) calc(var(--progress, 85) * 3.6deg), var(--neutral-200) calc(var(--progress, 85) * 3.6deg));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.progress-circle::before {
+    content: '';
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.progress-text {
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+    color: var(--primary-600);
+}
+
+.growth-chart {
+    width: 80px;
+    height: 60px;
+    position: relative;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: end;
+    gap: 4px;
+    height: 100%;
+}
+
+.bar {
+    flex: 1;
+    background: linear-gradient(to top, var(--primary-500), var(--accent-500));
+    border-radius: 2px 2px 0 0;
+    animation: growBar 1.5s ease-out forwards;
+    transform-origin: bottom;
+}
+
+@keyframes growBar {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+}
+
+.timeline-visual {
+    display: flex;
+    gap: 8px;
+}
+
+.timeline-point {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--neutral-300);
+    transition: all 0.3s ease;
+}
+
+.timeline-point.active {
+    background: var(--primary-500);
+    transform: scale(1.2);
+}
+
+.driver-content h4 {
+    color: var(--primary-600);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.driver-content p {
+    color: var(--neutral-600);
+    line-height: 1.6;
+}
+
+/* Market Comparison */
+.market-comparison {
+    margin-bottom: 3rem;
+}
+
+.comparison-title {
+    text-align: center;
+    color: var(--primary-600);
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.comparison-chart {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-500);
+}
+
+/* ===== DEVELOPMENT TIMELINE SECTION ===== */
+.development-timeline {
+    background: var(--neutral-50);
+    padding: 6rem 0;
+}
+
+.timeline-wrapper {
+    margin-top: 4rem;
+}
+
+.timeline-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.timeline-tab {
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--neutral-300);
+    background: white;
+    color: var(--neutral-600);
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timeline-tab.active,
+.timeline-tab:hover {
+    background: var(--primary-500);
+    border-color: var(--primary-500);
+    color: white;
+}
+
+.timeline-content {
+    position: relative;
+}
+
+.timeline-panel {
+    display: none;
+}
+
+.timeline-panel.active {
+    display: block;
+}
+
+.milestone-track {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.milestone-track::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--neutral-300);
+    z-index: 1;
+}
+
+.milestone {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding-left: 4rem;
+}
+
+.milestone-marker {
+    position: absolute;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 3px solid var(--neutral-300);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.milestone.completed .milestone-marker {
+    background: var(--accent-500);
+    border-color: var(--accent-500);
+    color: white;
+}
+
+.milestone.active .milestone-marker {
+    background: var(--primary-500);
+    border-color: var(--primary-500);
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+.milestone.upcoming .milestone-marker {
+    background: var(--neutral-100);
+    border-color: var(--neutral-400);
+    color: var(--neutral-500);
+}
+
+.milestone-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    position: relative;
+}
+
+.milestone-content::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid white;
+}
+
+.milestone-content h4 {
+    color: var(--primary-600);
+    margin-bottom: 0.5rem;
+}
+
+.milestone-content p {
+    color: var(--neutral-600);
+    margin-bottom: 1rem;
+}
+
+.milestone-progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--neutral-200);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.milestone.completed .milestone-progress {
+    color: var(--accent-600);
+}
+
+.milestone.active .milestone-progress {
+    color: var(--primary-600);
+}
+
+.milestone.upcoming .milestone-progress {
+    color: var(--neutral-500);
+}
+
+/* Amenities Grid */
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.amenity-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.amenity-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+}
+
+.amenity-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.amenity-item h4 {
+    color: var(--primary-600);
+    margin-bottom: 0.5rem;
+}
+
+.amenity-item p {
+    color: var(--neutral-600);
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.amenity-status {
+    background: var(--primary-100);
+    color: var(--primary-600);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Commercial Developments */
+.commercial-developments {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.development-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.development-item h4 {
+    color: var(--primary-600);
+    margin-bottom: 0.25rem;
+}
+
+.development-item p {
+    color: var(--neutral-600);
+    font-size: 0.875rem;
+}
+
+.development-status {
+    background: var(--accent-100);
+    color: var(--accent-600);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.timeline-summary {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.summary-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-600);
+}
+
+.summary-label {
+    color: var(--neutral-600);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* ===== FAQ SECTION ===== */
+.faq {
+    padding: 6rem 0;
+    background: white;
+}
+
+.faq-content {
+    margin-top: 4rem;
+}
+
+.faq-categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.faq-category {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--neutral-300);
+    background: white;
+    color: var(--neutral-600);
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-category.active,
+.faq-category:hover {
+    background: var(--primary-500);
+    border-color: var(--primary-500);
+    color: white;
+}
+
+.faq-panels {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-panel {
+    display: none;
+}
+
+.faq-panel.active {
+    display: block;
+}
+
+.faq-item {
+    background: var(--neutral-50);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    background: var(--primary-50);
+}
+
+.faq-question h4 {
+    color: var(--primary-600);
+    font-size: 1.125rem;
+    margin: 0;
+}
+
+.faq-toggle {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--primary-500);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-toggle:hover {
+    background: var(--primary-600);
+    transform: scale(1.1);
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+    background: var(--accent-500);
+}
+
+.faq-answer {
+    padding: 0 2rem 2rem;
+    color: var(--neutral-600);
+    line-height: 1.8;
+    display: none;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.faq-answer p {
+    margin-bottom: 1rem;
+}
+
+.faq-cta {
+    margin-top: 4rem;
+    text-align: center;
+    background: var(--primary-50);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+}
+
+.faq-cta .cta-content h3 {
+    color: var(--primary-600);
+    margin-bottom: 0.5rem;
+}
+
+.faq-cta .cta-content p {
+    color: var(--neutral-600);
+    margin-bottom: 2rem;
+}
+
+.faq-cta .cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ===== VIRTUAL TOUR SECTION ===== */
+.virtual-tour {
+    background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+    padding: 6rem 0;
+    color: white;
+}
+
+.virtual-tour .section__subtitle {
+    color: var(--accent-400);
+}
+
+.virtual-tour .section__title {
+    color: white;
+}
+
+.virtual-tour .section__description {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.tour-options {
+    margin-top: 4rem;
+}
+
+.tour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.tour-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.tour-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.tour-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.tour-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.tour-card:hover .tour-image img {
+    transform: scale(1.1);
+}
+
+.tour-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 86, 49, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tour-card:hover .tour-overlay {
+    opacity: 1;
+}
+
+.tour-icon {
+    font-size: 3rem;
+    color: white;
+}
+
+.tour-content {
+    padding: 2rem;
+    color: var(--neutral-700);
+}
+
+.tour-content h3 {
+    color: var(--primary-600);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.tour-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.tour-features {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.tour-features li {
+    color: var(--neutral-600);
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.tour-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-500);
+    font-weight: bold;
+}
+
+.tour-cta {
+    width: 100%;
+}
+
+/* Tour Booking */
+.tour-booking {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.booking-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.booking-header h3 {
+    color: white;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.booking-header p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.booking-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.option-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    color: var(--neutral-700);
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.option-card.featured {
+    border: 2px solid var(--accent-500);
+    transform: scale(1.05);
+}
+
+.option-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-500);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.option-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.option-card h4 {
+    color: var(--primary-600);
+    margin-bottom: 0.5rem;
+}
+
+.option-card p {
+    color: var(--neutral-600);
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.option-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-600);
+    margin-bottom: 0.5rem;
+}
+
+.option-schedule {
+    color: var(--neutral-500);
+    font-size: 0.875rem;
+}
+
+.booking-cta {
+    text-align: center;
+}
+
+.booking-note {
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .drivers-grid {
+        gap: 1rem;
+    }
+    
+    .driver-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .timeline-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .timeline-tab {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+    
+    .milestone {
+        padding-left: 3rem;
+    }
+    
+    .milestone-marker {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+    }
+    
+    .milestone-content {
+        padding: 1.5rem;
+    }
+    
+    .faq-categories {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .faq-category {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+    
+    .faq-question {
+        padding: 1rem 1.5rem;
+    }
+    
+    .faq-answer {
+        padding: 0 1.5rem 1.5rem;
+    }
+    
+    .tour-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .booking-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .option-card.featured {
+        transform: none;
+    }
+    
+    .summary-stats {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .faq-cta .cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tour-booking {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-card {
+        padding: 1.5rem;
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .driver-visual {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .progress-circle {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .progress-circle::before {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .milestone-track::before {
+        left: 25px;
+    }
+    
+    .milestone {
+        padding-left: 2.5rem;
+    }
+    
+    .milestone-marker {
+        width: 40px;
+        height: 40px;
+        font-size: 0.875rem;
+    }
+    
+    .tour-content {
+        padding: 1.5rem;
+    }
+    
+    .booking-header h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes countUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.stat-number.counting {
+    animation: countUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.milestone.animate {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.driver-item.animate {
+    animation: slideInLeft 0.6s ease forwards;
+}
