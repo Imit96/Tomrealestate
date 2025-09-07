@@ -288,7 +288,7 @@ https://securityheaders.com/
 
 - [ ] **Phone Numbers**
   - [ ] Primary: 07072172680 (verified working)
-  - [ ] WhatsApp: 08173611767 (verified working)
+  - [ ] WhatsApp: 08035244057 (verified working)
   - [ ] International format: +234 prefix
   - [ ] Click-to-call functionality working
 
